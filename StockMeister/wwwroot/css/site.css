@@ -1,0 +1,108 @@
+/*Fonts
+    Normal text: font-family: 'Montserrat', sans-serif;
+    Navigation: font-family: 'Roboto', sans-serif;
+    Branding: font-family: 'Roboto Slab', serif;
+*/
+
+
+/*General page styling*/
+
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom: 60px;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    white-space: nowrap;
+    line-height: 60px;
+}
+
+/*Bootsrap styling editing done here*/
+
+.remove-border {
+
+}
+
+.btn-primary {
+
+}
+
+.btn-outline-primary {
+
+}
+
+.btn-secondary {
+
+}
+
+.btn-outline-secondary {
+
+}
+
+/*Color Styling done here*/
+
+.bg-dark {
+    background: #333138;
+}
+
+.bg-light {
+    color: #FFFFFA;
+}
+
+.text-dark {
+
+}
+
+.text-light {
+    color: #FFFFFA !important;
+}
+
+/*Text styling done here*/
+
+.branding {
+    font-family: 'Roboto Slab', serif;
+    color: #FF312E;
+    font-size: 23px;
+    text-decoration: none;
+}
+
+.branding:hover {
+    color: #FF312E;
+}
+
+.navigation {
+    font-family: 'Roboto', sans-serif;
+    font-size: 17px;
+    color: #E6E6E6;
+    transition: 350ms;
+}
+
+.navigation:hover {
+    color: #FFFFFF;
+}
+
+.main-heading {
+
+}
+
+.secondary-heading {
+
+}
