@@ -12,8 +12,8 @@ namespace StockMeister.Models
         [Required]
         public string Surname { get; set; }
         public int? CompanyId { get; set; }
-        [ForeignKey("ComapnyId")]
+        [ForeignKey("CompanyId")]
         [ValidateNever]
-        public Company Company { get; set; }
+        public Company? Company { get; set; }
     }
 }

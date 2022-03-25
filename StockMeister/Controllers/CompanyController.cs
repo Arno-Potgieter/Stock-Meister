@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using StockMeister.Data.Repository.IRepository;
 using StockMeister.Models;
+using System.Security.Claims;
 
 namespace StockMeister.Controllers
 {
@@ -12,9 +14,9 @@ namespace StockMeister.Controllers
         {
             _unitOfWork = unitOfWork;
         }
-        public IActionResult Index(ApplicationUser user)
-        {
-            return View(user);
+        public IActionResult Index()
+        {                      
+            return View();
         }
     }
 }
