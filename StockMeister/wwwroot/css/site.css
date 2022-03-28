@@ -23,7 +23,7 @@ html {
 }
 
 body {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Roboto', sans-serif;
     margin-bottom: 60px;
 }
 
@@ -68,7 +68,7 @@ body {
 }
 
 .text-dark {
-
+    color: #000000;
 }
 
 .text-light {
@@ -80,8 +80,6 @@ body {
 .branding {
     font-family: 'Roboto Slab', serif;
     color: #FF312E;
-    font-size: 23px;
-    text-decoration: none;
 }
 
 .branding:hover {
@@ -99,10 +97,12 @@ body {
     color: #FFFFFF;
 }
 
-.main-heading {
-
+heading {
+    font-family: 'Roboto', sans-serif;
+    font-weight: bolder;
 }
 
-.secondary-heading {
-
+sub-heading {
+    font-family: 'Roboto', sans-serif;
+    font-weight: bolder;
 }
