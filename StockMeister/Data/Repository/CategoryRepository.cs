@@ -11,7 +11,7 @@ namespace StockMeister.Data.Repository
         {
             _db = db;
         }
-        public void update(Category obj)
+        public void Update(Category obj)
         {
             _db.Categories.Update(obj);
         }

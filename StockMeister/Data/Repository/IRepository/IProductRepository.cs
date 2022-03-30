@@ -2,8 +2,8 @@
 
 namespace StockMeister.Data.Repository.IRepository
 {
-    public interface ICompanyRepository : IRepository<Company>
+    public interface IProductRepository : IRepository<Product>,
     {
-        void Update(Company obj);
+        void Update(Product obj);
     }
 }
