@@ -60,11 +60,11 @@ body {
 /*Color Styling done here*/
 
 .bg-dark {
-    background: #333138;
+    background-color: #333138 !important;
 }
 
 .bg-light {
-    color: #FFFFFA;
+    background-color: #FFFFFF !important;
 }
 
 .text-dark {
@@ -99,10 +99,10 @@ body {
 
 heading {
     font-family: 'Roboto', sans-serif;
-    font-weight: bolder;
+    font-weight: bolder !important;
 }
 
 sub-heading {
     font-family: 'Roboto', sans-serif;
-    font-weight: bolder;
+    font-weight: bolder !important;
 }

@@ -8,6 +8,7 @@ using System.Security.Claims;
 
 namespace StockMeister.Controllers
 {
+    [Authorize]
     public class CompanyController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -22,21 +23,14 @@ namespace StockMeister.Controllers
         public async Task<IActionResult> Index(Company obj)
         {
             var user = await _userManager.GetUserAsync(HttpContext.User);
-            if(user == null)
+            if (user.CompanyId == null)
             {
-                return RedirectToAction("Create");
+                return RedirectToAction("Index", "Home");
             }
             else
             {
-                if (user.CompanyId == null)
-                {
-                    return RedirectToAction("Create");
-                }
-                else
-                {
-                    obj = _unitOfWork.Company.GetFirstOrDefault(u => u.Id == user.CompanyId);
-                    return View(obj);
-                }
+                obj = _unitOfWork.Company.GetFirstOrDefault(u => u.Id == user.CompanyId);
+                return View(obj);
             }
         }
 
@@ -57,7 +51,7 @@ namespace StockMeister.Controllers
             var result = await _userManager.UpdateAsync(user);
             if (result.Succeeded)
             {
-                RedirectToAction("Index");
+               return RedirectToAction("Index", "Company");
             }
             return View(obj);
         }
