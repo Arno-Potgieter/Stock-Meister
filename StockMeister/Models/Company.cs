@@ -10,6 +10,6 @@ namespace StockMeister.Models
 
         [Required]
         [Display(Name = "Business Name")]
-        public string businessName { get; set; }
+        public string BusinessName { get; set; }
     }
 }

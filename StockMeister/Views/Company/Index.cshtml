@@ -4,10 +4,23 @@
     ViewData["Title"] = "Index";
 }
 
-<div>
-    <h3>@Model.businessName</h3>
+<div class=container>
+    <div class="row">
+        <div class="col-8">
+            <h1 class="heading">@Model.BusinessName</h1>
+        </div>
+        <div class="col-4 text-end">
+            <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Page Options</button>
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+              <div class="offcanvas-header">
+                <h5 id="offcanvasRightLabel">Offcanvas right</h5>
+                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+              </div>
+              <div class="offcanvas-body">
+                ...
+              </div>
+            </div>
+        </div>
+    </div>
 </div>
-
-
-
 
