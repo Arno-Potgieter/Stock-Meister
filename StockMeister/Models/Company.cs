@@ -11,11 +11,5 @@ namespace StockMeister.Models
         [Required]
         [Display(Name = "Business Name")]
         public string BusinessName { get; set; }
-
-        public int? CategoryId { get; set; }
-
-        [ForeignKey("CategoryId")]
-        [ValidateNever]
-        public Category? Category { get; set; }
     }
 }

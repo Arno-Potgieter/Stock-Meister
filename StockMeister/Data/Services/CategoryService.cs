@@ -1,5 +1,8 @@
-﻿using StockMeister.Data.Repository.IRepository;
+﻿using Microsoft.AspNetCore.Identity;
+using StockMeister.Data.Repository.IRepository;
 using StockMeister.Models;
+using StockMeister.Models.ViewModels;
+using System.Security.Claims;
 
 namespace StockMeister.Data.Services
 {
@@ -7,12 +10,18 @@ namespace StockMeister.Data.Services
     {
 
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly string loginUserId;
 
-        public CategoryService(IUnitOfWork unitOfWork)
+        public CategoryService(IUnitOfWork unitOfWork, IHttpContextAccessor httpContextAccessor, UserManager<ApplicationUser> userManager)
         {
             _unitOfWork = unitOfWork;
+            _httpContextAccessor = httpContextAccessor;
+            loginUserId = _httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            _userManager = userManager;
         }
-        public async Task<int> AddUpdate(Category model)
+        public async Task<int> AddUpdate(CategoryVM model)
         {
             if(model != null && model.Id > 0)
             {
@@ -28,9 +37,12 @@ namespace StockMeister.Data.Services
             else
             {
                 // Create
+                var user = await _userManager.GetUserAsync(_httpContextAccessor.HttpContext.User);
+                var company = _unitOfWork.Company.GetFirstOrDefault(x => x.Id == user.CompanyId);
                 Category category = new Category()
                 {
                     CategoryName = model.CategoryName,
+                    CompanyId = company.Id,
                 };
 
                 _unitOfWork.Category.Add(category);

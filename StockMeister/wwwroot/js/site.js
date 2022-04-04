@@ -11,11 +11,11 @@ function checkCategoryValidation() {
         $("#categoryName").removeClass('error');
     }
     return isValid;
-}
+};
 
 function onShowCategoryModal(obj, ) {
     $('#categoryInput').modal("show");
-}
+};
 
 function onCloseCategoryModal() {
     $('#categoryForm')[0].reset();
@@ -23,7 +23,7 @@ function onCloseCategoryModal() {
     $('#categoryName').val("");
 
     $('#categoryInput').modal("hide");
-}
+};
 
 function onSubmitCategoryModal() {
     if (checkCategoryValidation()) {
@@ -33,7 +33,7 @@ function onSubmitCategoryModal() {
         };
 
         $.ajax({
-            url: routeURL + 'api/Category/SaveCategoryData',
+            url: routeURL + '/Controllers/api/Category/SaveCategoryData',
             type: 'POST',
             data: JSON.stringify(requestData),
             contentType: 'application/json',
@@ -47,7 +47,7 @@ function onSubmitCategoryModal() {
                 }
             },
             error: function (xhr) {
-                toastr.error(response.message);
+                toastr.error("Error", "error");
             }
         });
     }

@@ -6,7 +6,7 @@ using System.Security.Claims;
 
 namespace StockMeister.Controllers.API
 {
-    [Route("api/Category")]
+    [Route("Controllers/api/Category")]
     [ApiController]
     public class CategoryApiController : Controller
     {
@@ -24,7 +24,7 @@ namespace StockMeister.Controllers.API
 
         [HttpPost]
         [Route("SaveCategoryData")]
-        public IActionResult SaveCategoryData(Category data)
+        public IActionResult SaveCategoryData(CategoryVM data)
         {
             CommonResponse<int> commonResponse = new CommonResponse<int>();
             try
