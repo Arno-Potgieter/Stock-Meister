@@ -12,10 +12,10 @@ namespace StockMeister.Models
         [Display(Name = "Business Name")]
         public string BusinessName { get; set; }
 
-        public int CategoryId { get; set; }
+        public int? CategoryId { get; set; }
 
         [ForeignKey("CategoryId")]
         [ValidateNever]
-        public Category Category { get; set; }
+        public Category? Category { get; set; }
     }
 }

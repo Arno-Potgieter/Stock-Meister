@@ -3,6 +3,9 @@
     public interface IUnitOfWork
     {
         ICompanyRepository Company { get; }
+        ICategoryRepository Category { get; }
         void Save();
+
+        Task SaveAsync();
     }
 }

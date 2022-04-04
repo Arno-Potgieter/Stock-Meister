@@ -35,6 +35,12 @@ body {
     line-height: 60px;
 }
 
+/*Error stylind=g*/
+
+.error {
+    border: 1px solid red !important;
+}
+
 /*Bootsrap styling editing done here*/
 
 .remove-border {

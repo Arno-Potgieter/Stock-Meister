@@ -10,13 +10,21 @@ namespace StockMeister.Data.Repository
         {
             _db = db;
             Company = new CompanyRepository(_db);
+            Category = new CategoryRepository(_db);
         }
 
         public ICompanyRepository Company { get; private set; }
 
+        public ICategoryRepository Category { get; private set; }
+
         public void Save()
         {
             _db.SaveChanges();
+        }
+
+        public async Task SaveAsync()
+        {
+           await _db.SaveChangesAsync();
         }
     }
 }

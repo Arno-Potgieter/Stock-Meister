@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using StockMeister.Data.Repository.IRepository;
+using StockMeister.Models;
 
 namespace StockMeister.Controllers
 {
@@ -13,12 +14,8 @@ namespace StockMeister.Controllers
         }
         public IActionResult Index()
         {
-            return View();
-        }
-
-        public IActionResult GetCreate()
-        {
-            return View();
+            IEnumerable<Category> categoryList = _unitOfWork.Category.GetAll();
+            return View(categoryList);
         }
     }
 }

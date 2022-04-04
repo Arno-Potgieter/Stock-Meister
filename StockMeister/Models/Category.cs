@@ -1,11 +1,11 @@
-﻿namespace StockMeister.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace StockMeister.Models
 {
     public class Category
     {
         public int Id { get; set; }
 
-        public string? CategoryName { get; set; }
-
-        public int UnitCount { get; set; }
+        public string CategoryName { get; set; }
     }
 }

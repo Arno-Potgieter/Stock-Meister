@@ -13,14 +13,24 @@
             <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Page Options</button>
             <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
               <div class="offcanvas-header">
-                <h5 id="offcanvasRightLabel">Offcanvas right</h5>
+                <h5 id="offcanvasRightLabel">Page Options</h5>
                 <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
               </div>
               <div class="offcanvas-body">
-                ...
+               <div class="row">
+                   <h3 class="heading text-center mb-4">Category Options</h3>
+                   <div class="col text-center">
+                       <a class="btn btn-primary" asp-controller="Category" asp-action="Index">View All</a>
+                   </div>
+                   <div class="col text-center">
+                       <a class="btn btn-outline-primary" onclick="onShowCategoryModal();">Create</a>
+                   </div>
+               </div>
               </div>
             </div>
         </div>
     </div>
 </div>
+
+<partial name="_CreateCategory" />
 
