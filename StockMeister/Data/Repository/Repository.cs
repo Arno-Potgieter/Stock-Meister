@@ -20,7 +20,7 @@ namespace StockMeister.Data.Repository
             DbSet.Add(entity);
         }
 
-        public IEnumerable<T> GetAll(string? includeProperties = null)
+        public IEnumerable<T> GetAll(Expression<Func<T, bool>> filter, string? includeProperties = null)
         {
             IQueryable<T> query = DbSet;
             if(includeProperties != null)
@@ -32,6 +32,8 @@ namespace StockMeister.Data.Repository
             }
             return query.ToList();
         }
+
+
 
         public T GetFirstOrDefault(Expression<Func<T, bool>> filter, string? includeProperties = null)
         {

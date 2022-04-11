@@ -50,5 +50,10 @@ namespace StockMeister.Data.Services
                 return 2;
             }
         }
+
+        public Task<int> GetAll()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

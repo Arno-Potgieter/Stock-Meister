@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using StockMeister.Data.Repository.IRepository;
 using StockMeister.Data.Services;
 using StockMeister.Models;
 using StockMeister.Models.ViewModels;
@@ -12,12 +14,16 @@ namespace StockMeister.Controllers.API
     {
         private readonly ICategoryService _categoryService;
         private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly IUnitOfWork _unitOfWork;
+        private readonly UserManager<ApplicationUser> _userManager;
         private readonly string loginUserId;
         private readonly string role;
-        public CategoryApiController(ICategoryService categoryService, IHttpContextAccessor httpContextAccessor)
+        public CategoryApiController(ICategoryService categoryService, IHttpContextAccessor httpContextAccessor, IUnitOfWork unitOfWork, UserManager<ApplicationUser> userManager)
         {
             _categoryService = categoryService;
             _httpContextAccessor = httpContextAccessor;
+            _unitOfWork = unitOfWork;
+            _userManager = userManager;
             loginUserId = _httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
             role = _httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.Role).Value;
         }
@@ -47,6 +53,16 @@ namespace StockMeister.Controllers.API
                 commonResponse.status = Data.Static_Data.CategoryMessages.failure_code;
             }
             return Ok(commonResponse);
+        }
+
+        [HttpGet]
+        [Route("GetAllCategories")]
+        public async Task<IActionResult> GetAllCategories()
+        {
+            var user = await _userManager.GetUserAsync(HttpContext.User);
+            var company = _unitOfWork.Company.GetFirstOrDefault(u => u.Id == user.CompanyId);
+            var categoryList = _unitOfWork.Category.GetAll(u => u.CompanyId == company.Id);
+            return Json(new { data = categoryList });
         }
     }
 }

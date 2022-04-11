@@ -14,8 +14,7 @@ namespace StockMeister.Controllers
         }
         public IActionResult Index()
         {
-            IEnumerable<Category> categoryList = _unitOfWork.Category.GetAll();
-            return View(categoryList);
+            return View();
         }
     }
 }

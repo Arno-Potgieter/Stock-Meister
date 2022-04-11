@@ -4,12 +4,12 @@
     ViewData["Title"] = "Index";
 }
 
-<div class=container>
+<div class="container">
     <div class="row">
-        <div class="col-8">
+        <div class="col-9">
             <h1 class="heading">@Model.BusinessName</h1>
         </div>
-        <div class="col-4 text-end">
+        <div class="col-3 text-end">
             <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Page Options</button>
             <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
               <div class="offcanvas-header">
@@ -17,20 +17,21 @@
                 <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
               </div>
               <div class="offcanvas-body">
-               <div class="row">
-                   <h3 class="heading text-center mb-4">Category Options</h3>
-                   <div class="col text-center">
-                       <a class="btn btn-primary" asp-controller="Category" asp-action="Index">View All</a>
-                   </div>
-                   <div class="col text-center">
-                       <a class="btn btn-outline-primary" onclick="onShowCategoryModal();">Create</a>
-                   </div>
-               </div>
+                  <div class="text-center">
+                      <ul class="nav flex-column">
+                          <li class="nav-item">
+                              <a class="nav-link text-dark" asp-controller="Category" asp-action="index">Categories</a>
+                          </li>
+                          <li class="nav-item">
+                              <a class="nav-link text-dark">Products</a>
+                          </li>
+                          <li class="nav-item">
+                              <a class="nav-link text-dark">Sales</a>
+                          </li>
+                      </ul>
+                  </div>
               </div>
             </div>
         </div>
     </div>
 </div>
-
-<partial name="_CreateCategory" />
-
