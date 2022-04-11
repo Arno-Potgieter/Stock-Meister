@@ -64,5 +64,24 @@ namespace StockMeister.Controllers.API
             var categoryList = _unitOfWork.Category.GetAll(u => u.CompanyId == company.Id);
             return Json(new { data = categoryList });
         }
+
+        [HttpGet]
+        [Route("GetCategoryData")]
+        public IActionResult GetCategoryData(int id)
+        {
+            CommonResponse<Category> commonResponse = new CommonResponse<Category>();
+            try
+            {
+                commonResponse.dataenum = _categoryService.GetById(id);
+                commonResponse.status = Data.Static_Data.CategoryMessages.success_code;
+            }
+            catch(Exception e)
+            {
+                commonResponse.message = e.Message;
+                commonResponse.status = Data.Static_Data.CategoryMessages.failure_code;
+            }
+
+            return Ok(commonResponse);
+        }
     }
 }

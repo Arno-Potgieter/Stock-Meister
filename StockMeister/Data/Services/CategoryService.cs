@@ -51,9 +51,9 @@ namespace StockMeister.Data.Services
             }
         }
 
-        public Task<int> GetAll()
+        public Category GetById(int id)
         {
-            throw new NotImplementedException();
+            return _unitOfWork.Category.GetFirstOrDefault( x => x.Id == id);
         }
     }
 }

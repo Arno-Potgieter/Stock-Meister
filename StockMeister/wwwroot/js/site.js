@@ -28,8 +28,8 @@ function loadCategoryTable() {
                 "render": function (data) {
                     return `
                             <div class="w-100" role="group">
-                                <a class="btn btn-outline-dark mx-2" onClick=Delete('/Controllers/api/Category/${data}><i class="bi bi-pen"></i>Edit</a>
-                                <a class="btn btn-outline-danger mx-2" onClick=Delete('/Controllers/api/Category/${data}')><i class="bi bi-trash"></i> Delete</a>
+                                <a class="btn btn-outline-dark mx-2" ><i class="bi bi-pen"></i>Edit</a>
+                                <a class="btn btn-outline-danger mx-2" onClick=DeleteModal(${data})><i class="bi bi-trash"></i> Delete</a>
                             </div>
                           `            
                 },
@@ -92,4 +92,8 @@ function onSubmitCategoryModal() {
             }
         });
     }
+}
+
+function DeleteModal(obj) {
+    
 }

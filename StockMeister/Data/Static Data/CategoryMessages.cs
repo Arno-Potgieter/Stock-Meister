@@ -7,5 +7,8 @@
 
         public static string categoryCreated = "Category created";
         public static string categoryUpdated = "Category Updated";
+        public static string categoryDeleted = "Category Deleted";
+
+        public static string somethingWentWrong = "Something went wrong, please try again";
     }
 }

@@ -6,6 +6,6 @@
         ICategoryRepository Category { get; }
         void Save();
 
-        Task SaveAsync();
+        Task<int> SaveAsync();
     }
 }
