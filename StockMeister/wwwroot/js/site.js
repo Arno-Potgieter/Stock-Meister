@@ -95,5 +95,6 @@ function onSubmitCategoryModal() {
 }
 
 function DeleteModal(obj) {
-    
+    $('#categoryName').val(obj.categoryName);
+    $('#categoryDeleteInput').modal("show");
 }
