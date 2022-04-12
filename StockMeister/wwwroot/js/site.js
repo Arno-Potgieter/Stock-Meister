@@ -29,7 +29,7 @@ function loadCategoryTable() {
                     return `
                             <div class="w-100" role="group">
                                 <a class="btn btn-outline-dark mx-2" ><i class="bi bi-pen"></i>Edit</a>
-                                <a class="btn btn-outline-danger mx-2" onClick=DeleteModal(${data})><i class="bi bi-trash"></i> Delete</a>
+                                <a class="btn btn-outline-danger mx-2" onClick=GetDelete(${data})><i class="bi bi-trash"></i> Delete</a>
                             </div>
                           `            
                 },
@@ -95,6 +95,56 @@ function onSubmitCategoryModal() {
 }
 
 function DeleteModal(obj) {
-    $('#categoryName').val(obj.categoryName);
-    $('#categoryDeleteInput').modal("show");
+    if (obj !== null) {
+        $('#categoryNameDelete').html(obj.categoryName);
+        $('#idDelete').val(obj.id);
+
+        $('#categoryDeleteInput').modal("show");
+    }
+}
+
+function onCloseDeleteModal() {
+    $('#categoryDeleteForm')[0].reset();
+    $('#idDelete').val(0);
+    $('#categoryNameDelete').val("");
+
+    $('#categoryDeleteInput').modal("hide");
+}
+
+function DeleteModalSubmit() {
+    var id = parseInt($('#idDelete').val());
+    $.ajax({
+        url: routeURL + '/Controllers/api/Category/DeleteCategory/' + id,
+        type: 'GET',
+        dataType: 'JSON',
+        success: function (response) {
+            if (response.status === 1) {
+                dataTable.ajax.reload();
+                toastr.success(response.message, "success");
+                onCloseDeleteModal();
+            }
+            else {
+                toastr.error(response.message, "error");
+            }
+        },
+        error: function (xhr) {
+            toastr.error("Error", "error");
+        }
+    });
+}
+
+function GetDelete(Data) {
+    $.ajax({
+        url: routeURL + '/Controllers/api/Category/GetCategoryData/' + Data,
+        type: 'GET',
+        dataType: 'JSON',
+        success: function (response) {
+            if (response.status === 1 && response.dataenum !== undefined) {
+                DeleteModal(response.dataenum);
+            }
+        },
+        error: function (xhr) {
+            toastr.error("Error", "error");
+        }
+    });
 }

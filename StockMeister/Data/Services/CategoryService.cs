@@ -51,6 +51,15 @@ namespace StockMeister.Data.Services
             }
         }
 
+        public async Task<int> DeleteCategory(int id)
+        {
+            var category = _unitOfWork.Category.GetFirstOrDefault(x => x.Id == id);
+            _unitOfWork.Category.Remove(category);
+            await _unitOfWork.SaveAsync();
+
+            return 1;
+        }
+
         public Category GetById(int id)
         {
             return _unitOfWork.Category.GetFirstOrDefault( x => x.Id == id);

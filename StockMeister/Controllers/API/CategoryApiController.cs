@@ -66,7 +66,7 @@ namespace StockMeister.Controllers.API
         }
 
         [HttpGet]
-        [Route("GetCategoryData")]
+        [Route("GetCategoryData/{id}")]
         public IActionResult GetCategoryData(int id)
         {
             CommonResponse<Category> commonResponse = new CommonResponse<Category>();
@@ -81,6 +81,28 @@ namespace StockMeister.Controllers.API
                 commonResponse.status = Data.Static_Data.CategoryMessages.failure_code;
             }
 
+            return Ok(commonResponse);
+        }
+
+        [HttpGet]
+        [Route("DeleteCategory/{id}")]
+        public IActionResult DeleteCategory(int id)
+        {
+            CommonResponse<int> commonResponse = new CommonResponse<int>();
+            try
+            {
+                commonResponse.status = _categoryService.DeleteCategory(id).Result;
+                if (commonResponse.status == 1)
+                {
+                    // Delete
+                    commonResponse.message = Data.Static_Data.CategoryMessages.categoryDeleted;
+                }
+            }
+            catch (Exception e)
+            {
+                commonResponse.message = e.Message;
+                commonResponse.status = Data.Static_Data.CategoryMessages.failure_code;
+            }
             return Ok(commonResponse);
         }
     }
