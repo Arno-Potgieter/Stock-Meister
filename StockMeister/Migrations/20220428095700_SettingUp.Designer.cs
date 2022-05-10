@@ -12,8 +12,8 @@ using StockMeister.Data;
 namespace StockMeister.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220331101329_UpdateCategory")]
-    partial class UpdateCategory
+    [Migration("20220428095700_SettingUp")]
+    partial class SettingUp
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -247,7 +247,12 @@ namespace StockMeister.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("CompanyId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("CompanyId");
 
                     b.ToTable("Categories");
                 });
@@ -264,12 +269,7 @@ namespace StockMeister.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("CategoryId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("CategoryId");
 
                     b.ToTable("Companies");
                 });
@@ -384,13 +384,15 @@ namespace StockMeister.Migrations
                     b.Navigation("Company");
                 });
 
-            modelBuilder.Entity("StockMeister.Models.Company", b =>
+            modelBuilder.Entity("StockMeister.Models.Category", b =>
                 {
-                    b.HasOne("StockMeister.Models.Category", "Category")
+                    b.HasOne("StockMeister.Models.Company", "Company")
                         .WithMany()
-                        .HasForeignKey("CategoryId");
+                        .HasForeignKey("CompanyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Navigation("Category");
+                    b.Navigation("Company");
                 });
 
             modelBuilder.Entity("StockMeister.Models.Product", b =>
