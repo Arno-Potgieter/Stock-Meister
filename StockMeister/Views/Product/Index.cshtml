@@ -1,0 +1,27 @@
+﻿@using Microsoft.AspNetCore.Identity
+@model IEnumerable<Product>
+
+<div class="container">
+    <div class="row mb-5">
+        <div class="col-9">
+            <h1 class="heading">Products</h1>
+        </div>
+        <div class="col-3 text-end">
+            <button class="btn btn-primary mt-3" onclick="ProductModal();">Create</button>
+        </div>
+    </div>
+    <div class="">
+        <table class="table table-hover align-middle" id="productTable" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Product Name</th>
+                    <th class="text-center">Functions</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/product.js"></script>
+}

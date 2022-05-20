@@ -5,7 +5,7 @@
         public static int success_code = 1;
         public static int failure_code = 0;
 
-        public static string categoryCreated = "Category created";
+        public static string categoryCreated = "Category Created";
         public static string categoryUpdated = "Category Updated";
         public static string categoryDeleted = "Category Deleted";
 

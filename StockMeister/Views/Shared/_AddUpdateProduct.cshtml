@@ -1,0 +1,25 @@
+﻿<div class="modal fade" role="dialog" id="categoryInput" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div>
+                <form id="productForm" autocomplete="off" novalidate="novalidate">
+                    <input type="hidden" id="id" value="" />
+                    <div class="modal-header">
+                        <h4 class="modal-title">Create a Product</h4>
+                        <button type="button" class="btn-close" onclick="CloseProductModal();"></button>
+                    </div>
+                    <div class="modal-body my-5">
+                        <div class="form-floating">
+                            <input class="form-control" id="productName" placeholder="Product Name"/>
+                            <label for="productName">Product Name</label>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-success" id="btnSubmit" type="button" onclick="SubmitProductModal();">Create</button>
+                        <button class="btn btn-success" id="btnUpdate" type="button" onclick="SubmitProductModal();">Update</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

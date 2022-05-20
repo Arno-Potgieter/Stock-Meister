@@ -16,5 +16,11 @@ namespace StockMeister.Models
         [ForeignKey("CategoryId")]
         [ValidateNever]
         public Category Category { get; set; }
+
+        public int CompanyId { get; set; }
+
+        [ForeignKey("CompanyId")]
+        [ValidateNever]
+        public Company Company { get; set; }
     }
 }

@@ -10,9 +10,10 @@ using StockMeister.Models;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+var DefaultConnectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+var LaptopConnectionString = builder.Configuration.GetConnectionString("LaptopConnection");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlServer(connectionString));
+    options.UseSqlServer(LaptopConnectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddTransient<ICategoryService, CategoryService>();
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
