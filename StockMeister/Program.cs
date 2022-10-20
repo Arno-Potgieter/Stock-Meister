@@ -13,7 +13,7 @@ var builder = WebApplication.CreateBuilder(args);
 var DefaultConnectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 var LaptopConnectionString = builder.Configuration.GetConnectionString("LaptopConnection");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlServer(LaptopConnectionString));
+    options.UseSqlServer(DefaultConnectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddTransient<ICategoryService, CategoryService>();
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
