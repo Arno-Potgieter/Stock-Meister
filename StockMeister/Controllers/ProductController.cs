@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using StockMeister.Data.Repository.IRepository;
@@ -9,6 +10,7 @@ using System.Security.Claims;
 
 namespace StockMeister.Controllers
 {
+    [Authorize]
     public class ProductController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;

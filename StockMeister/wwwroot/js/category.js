@@ -155,7 +155,7 @@ function DeleteModalSubmit() {
                 toastr.success(response.message, "success");
                 CloseDeleteModal();
             }
-            if (response.status === 2) {
+            else if (response.status === 2) {
                 dataTable.ajax.reload();
                 toastr.warning(response.message, "warning");
                 CloseDeleteModal();

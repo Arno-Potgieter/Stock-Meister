@@ -7,6 +7,7 @@ using StockMeister.Data.Repository.IRepository;
 using StockMeister.Data.Services;
 using StockMeister.Models;
 
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -15,6 +16,7 @@ var LaptopConnectionString = builder.Configuration.GetConnectionString("LaptopCo
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(DefaultConnectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+builder.Services.AddTransient<IEmailSender, EmailSender>();
 builder.Services.AddTransient<ICategoryService, CategoryService>();
 builder.Services.AddTransient<IProductService, ProductService>();
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
