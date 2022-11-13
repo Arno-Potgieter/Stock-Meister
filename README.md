@@ -15,4 +15,4 @@ In this project I created a repository pattern to access the database for the pr
 You can do all the CRUD operations in this project
 
 --Future plans--
-# Enable main user to create accounts for more users 
+1. Enable main user to create accounts for more users 
