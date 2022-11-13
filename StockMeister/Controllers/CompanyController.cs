@@ -51,7 +51,7 @@ namespace StockMeister.Controllers
             var result = await _userManager.UpdateAsync(user);
             if (result.Succeeded)
             {
-               return RedirectToAction("Index", "Company");
+               return RedirectToAction("Index", "Category");
             }
             return View(obj);
         }
