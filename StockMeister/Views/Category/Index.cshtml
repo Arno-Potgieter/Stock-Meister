@@ -1,13 +1,14 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @model IEnumerable<Category>
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Categories";
 }
 
 <div class="container">
     <div class="row mb-5">
         <div class="col-9">
-            <h1 class="heading">Categories</h1>            
+            <h1 class="heading mt-1">@ViewBag.companyName.BusinessName</h1>
+            <h2 class="mt-5">Categories</h2>            
         </div>
         <div class="col-3 text-end">
             <button class="btn btn-primary mt-3" onclick="CategoryModal();">Create</button>
@@ -25,7 +26,7 @@
     </div>
 </div>
 
-<partial name="_CreateCategory" />
+<partial name="_AddUpdateCategory" />
 <partial name="_DeleteCategory" />
 
 

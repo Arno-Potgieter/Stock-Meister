@@ -13,7 +13,7 @@ namespace StockMeister.Data.Repository
         }
         public void Update(Product obj)
         {
-            _db.Products.Add(obj);
+            _db.Products.Update(obj);
         }
     }
 }

@@ -1,10 +1,14 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @model IEnumerable<Product>
+@{
+    ViewData["Title"] = "Products";
+}
 
 <div class="container">
     <div class="row mb-5">
         <div class="col-9">
-            <h1 class="heading">Products</h1>
+            <h1 class="heading mt-1">@ViewBag.companyName.BusinessName</h1>
+            <h2 class="mt-5">Products</h2>
         </div>
         <div class="col-3 text-end">
             <button class="btn btn-primary mt-3" onclick="ProductModal();">Create</button>
@@ -15,12 +19,17 @@
             <thead>
                 <tr>
                     <th>Product Name</th>
+                    <th>Product Price</th>
+                    <th>Category</th>
                     <th class="text-center">Functions</th>
                 </tr>
             </thead>
         </table>
     </div>
 </div>
+
+<partial name="_AddUpdateProduct" />
+<partial name="_DeleteProduct" />
 
 @section Scripts {
     <script src="~/js/product.js"></script>

@@ -20,15 +20,16 @@ namespace StockMeister.Data.Services
             _userManager = userManager;
             loginUserId = _httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
         }
-
         public async Task<int> AddUpdate(ProductVM model)
         {
             if (model != null && model.Id > 0)
             {
                 // Update
-                var product = _unitOfWork.Product.GetFirstOrDefault(x => x.Id == model.Id);
+                var product = _unitOfWork.Product.GetFirstOrDefault(x => x.Id == model.Id, "Category");
 
                 product.ProductName = model.ProductName;
+                product.ProductPrice = model.ProductPrice;
+                product.CategoryId = model.CategoryId;
 
                 _unitOfWork.Product.Update(product);
                 await _unitOfWork.SaveAsync();
@@ -38,10 +39,13 @@ namespace StockMeister.Data.Services
             {
                 // Create
                 var user = await _userManager.GetUserAsync(_httpContextAccessor.HttpContext.User);
+                var category = _unitOfWork.Category.GetFirstOrDefault(x => x.Id == model.CategoryId);
                 var company = _unitOfWork.Company.GetFirstOrDefault(x => x.Id == user.CompanyId);
                 Product product = new Product()
                 {
                     ProductName = model.ProductName,
+                    ProductPrice = model.ProductPrice,
+                    CategoryId = category.Id,
                     CompanyId = company.Id,
                 };
 
@@ -50,14 +54,17 @@ namespace StockMeister.Data.Services
                 return 2;
             };
         }
-        public Task<int> DeleteProduct(int id)
+        public async Task<int> DeleteProduct(int id)
         {
-            throw new NotImplementedException();
-        }
+            var product = _unitOfWork.Product.GetFirstOrDefault(x => x.Id == id);
+            _unitOfWork.Product.Remove(product);
+            await _unitOfWork.SaveAsync();
 
+            return 1;
+        }
         public Product GetById(int id)
         {
-            throw new NotImplementedException();
+            return _unitOfWork.Product.GetFirstOrDefault(x => x.Id == id,"Category");
         }
     }
 }

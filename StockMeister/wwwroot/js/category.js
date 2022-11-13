@@ -1,5 +1,5 @@
 ﻿var routeURL = location.protocol + "//" + location.host;
-var dataTable
+var dataTable;
 
 $(document).ready(function () {
     loadCategoryTable();
@@ -107,7 +107,7 @@ function SubmitCategoryModal() {
             }
         });
     }
-}
+};
 
 function GetDelete(Data) {
     $.ajax({
@@ -123,16 +123,17 @@ function GetDelete(Data) {
             toastr.error("Error", "error");
         }
     });
-}
+};
 
 function DeleteCategoryModal(obj) {
+
     if (obj !== null) {
         $('#categoryNameDelete').html(obj.categoryName);
         $('#idDelete').val(obj.id);
 
         $('#categoryDeleteInput').modal("show");
     }
-}
+};
 
 function CloseDeleteModal() {
     $('#categoryDeleteForm')[0].reset();
@@ -140,7 +141,7 @@ function CloseDeleteModal() {
     $('#categoryNameDelete').val("");
 
     $('#categoryDeleteInput').modal("hide");
-}
+};
 
 function DeleteModalSubmit() {
     var id = parseInt($('#idDelete').val());
@@ -154,6 +155,11 @@ function DeleteModalSubmit() {
                 toastr.success(response.message, "success");
                 CloseDeleteModal();
             }
+            if (response.status === 2) {
+                dataTable.ajax.reload();
+                toastr.warning(response.message, "warning");
+                CloseDeleteModal();
+            }
             else {
                 toastr.error(response.message, "error");
             }
@@ -162,4 +168,4 @@ function DeleteModalSubmit() {
             toastr.error("Error", "error");
         }
     });
-}
+};

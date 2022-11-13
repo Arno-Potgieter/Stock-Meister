@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace StockMeister.Models
@@ -11,6 +12,7 @@ namespace StockMeister.Models
 
         public string ProductPrice { get; set; }
 
+        [DisplayName("Select a Category")]
         public int? CategoryId { get; set; }
 
         [ForeignKey("CategoryId")]

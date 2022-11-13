@@ -97,6 +97,10 @@ namespace StockMeister.Controllers.API
                     // Delete
                     commonResponse.message = Data.Static_Data.CategoryMessages.categoryDeleted;
                 }
+                else if (commonResponse.status == 2)
+                {
+                    commonResponse.message = Data.Static_Data.CategoryMessages.categoryUsed;
+                }
             }
             catch (Exception e)
             {
@@ -104,6 +108,12 @@ namespace StockMeister.Controllers.API
                 commonResponse.status = Data.Static_Data.CategoryMessages.failure_code;
             }
             return Ok(commonResponse);
+        }
+
+        [HttpGet]
+        public IActionResult CheckProduct(int id)
+        {
+            return Ok();
         }
     }
 }

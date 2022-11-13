@@ -4,11 +4,11 @@ using StockMeister.Models;
 using StockMeister.Models.ViewModels;
 using System.Security.Claims;
 
+
 namespace StockMeister.Data.Services
 {
     public class CategoryService : ICategoryService
     {
-
         private readonly IUnitOfWork _unitOfWork;
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly UserManager<ApplicationUser> _userManager;
@@ -50,16 +50,26 @@ namespace StockMeister.Data.Services
                 return 2;
             }
         }
-
         public async Task<int> DeleteCategory(int id)
         {
+            var user = await _userManager.GetUserAsync(_httpContextAccessor.HttpContext.User);
+            var company = _unitOfWork.Company.GetFirstOrDefault(u => u.Id == user.CompanyId);
+            var productList = _unitOfWork.Product.GetAll(u => u.CompanyId == company.Id);
+
+            foreach(var product in productList)
+            {
+                if (product.CategoryId == id)
+                {
+                    return 2;
+                }
+            }
+
             var category = _unitOfWork.Category.GetFirstOrDefault(x => x.Id == id);
             _unitOfWork.Category.Remove(category);
             await _unitOfWork.SaveAsync();
 
             return 1;
         }
-
         public Category GetById(int id)
         {
             return _unitOfWork.Category.GetFirstOrDefault( x => x.Id == id);

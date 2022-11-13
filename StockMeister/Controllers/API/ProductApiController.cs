@@ -18,7 +18,6 @@ namespace StockMeister.Controllers.API
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly string loginUserId;
         private readonly string role;
-
         public ProductApiController(IProductService productService, IHttpContextAccessor httpContextAccessor, IUnitOfWork unitOfWork, UserManager<ApplicationUser> userManager)
         {
             _productService = productService;
@@ -62,8 +61,49 @@ namespace StockMeister.Controllers.API
         {
             var user = await _userManager.GetUserAsync(HttpContext.User);
             var company = _unitOfWork.Company.GetFirstOrDefault(u => u.Id == user.CompanyId);
-            var productList = _unitOfWork.Product.GetAll(u => u.CompanyId == company.Id);
+            var productList = _unitOfWork.Product.GetAll(u => u.CompanyId == company.Id, "Category");
             return Json(new { data = productList });
+        }
+
+        [HttpGet]
+        [Route("GetProductData/{id}")]
+        public  IActionResult GetProductData(int id)
+        {
+            CommonResponse<Product> commonResponse = new CommonResponse<Product>();
+            try
+            {
+                commonResponse.dataenum = _productService.GetById(id);
+                commonResponse.status = Data.Static_Data.ProductMessages.success_code;
+            }
+            catch (Exception e)
+            {
+                commonResponse.message = e.Message;
+                commonResponse.status = Data.Static_Data.ProductMessages.failure_code;
+            }
+
+            return Ok(commonResponse);
+        }
+
+        [HttpGet]
+        [Route("DeleteProduct/{id}")]
+        public IActionResult DeleteProduct(int id)
+        {
+            CommonResponse<int> commonResponse = new CommonResponse<int>();
+            try
+            {
+                commonResponse.status = _productService.DeleteProduct(id).Result;
+                if(commonResponse.status == 1)
+                {
+                    // Delete
+                    commonResponse.message = Data.Static_Data.ProductMessages.productDeleted;
+                }
+            }
+            catch (Exception e)
+            {
+                commonResponse.message = e.Message;
+                commonResponse.status = Data.Static_Data.ProductMessages.failure_code;
+            }
+            return Ok(commonResponse);
         }
     }
 }

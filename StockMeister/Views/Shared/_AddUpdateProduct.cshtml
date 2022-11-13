@@ -1,4 +1,5 @@
-﻿<div class="modal fade" role="dialog" id="categoryInput" data-backdrop="static" data-keyboard="false">
+﻿@model Product
+<div class="modal fade" role="dialog" id="productInput" data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div>
@@ -13,6 +14,17 @@
                             <input class="form-control" id="productName" placeholder="Product Name"/>
                             <label for="productName">Product Name</label>
                         </div>
+                        <div class="form-floating mt-2">
+                            <input class="form-control" id="productPrice" placeholder="Product Price" />
+                            <label for="productPrice">Product Price</label>
+                        </div>
+                        <div class="form-floating mt-2">                         
+                            <select class="form-select" asp-for="CategoryId" asp-items="ViewBag.CategoryList" id="productCategory">
+                                <option disabled selected>--Select Category--</option>
+                            </select>
+                            <label asp-for="CategoryId"></label>
+                        </div>
+                        <span class="text-danger" asp-validation-for="CategoryId"></span>
                     </div>
                     <div class="modal-footer">
                         <button class="btn btn-success" id="btnSubmit" type="button" onclick="SubmitProductModal();">Create</button>

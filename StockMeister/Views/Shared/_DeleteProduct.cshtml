@@ -1,0 +1,24 @@
+﻿<div class="modal fade" role="dialog" id="productDeleteInput" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div>
+                <form id="productDeleteForm" autocomplete="off" novalidate="novalidate">
+                    <input type="hidden" id="idDelete" value="" />
+                    <div class="modal-header">
+                        <h4 class="modal-title">Delete The Product</h4>
+                        <button type="button" class="btn-close" onclick="CloseDeleteModal();"></button>
+                    </div>
+                    <div class="modal-body my-5">
+                        <div class="form-group">
+                            <p for="categoryName">Are you sure you want to delete the product?</p>
+                            <p class="h4 mt-2" maxlength="100" id="productNameDelete"></p>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-success" id="btnSubmit" type="button" onclick="DeleteModalSubmit();">Delete</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

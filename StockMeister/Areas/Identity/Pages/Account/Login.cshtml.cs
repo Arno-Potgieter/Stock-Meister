@@ -116,7 +116,7 @@ namespace StockMeister.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
-                    return RedirectToAction("Index", "Company");
+                    return RedirectToAction("Index", "Category");
                 }
                 if (result.RequiresTwoFactor)
                 {
