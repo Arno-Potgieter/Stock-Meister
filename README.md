@@ -16,3 +16,4 @@ You can do all the CRUD operations in this project
 
 --Future plans--
 1. Enable main user to create accounts for more users 
+2. Enable email service
